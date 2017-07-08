@@ -6,6 +6,12 @@ CMakeFiles
 cmake_install.cmake
 install_manifest.txt
 
+# for qt creator
+*.files
+*.config
+*.includes
+*.creator
+
 # for linux local file
 *~
 
