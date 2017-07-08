@@ -17,6 +17,9 @@ using namespace std;
 #include "twist_waist.h"
 #include "say_hello.h"
 
+//ty's gait
+#include "GoStair.h"
+
 #ifdef WIN32
 #define rt_printf printf
 #endif
@@ -80,6 +83,7 @@ int main(int argc, char *argv[])
 	rs.addCmd("tw", twistWaistParse, twistWaistGait);
 	rs.addCmd("sh", sayHelloParse, sayHelloGait);
 
+    rs.addCmd("gus",parseGoUpStair,GoUpStair);
 	rs.open();
 
 	rs.setOnExit([&]() 

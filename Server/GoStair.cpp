@@ -15,7 +15,7 @@
 static double Gait_GoUpStair[18*GoUpStairLengthEnough];
 static int GaitStairCount;
 
-void GoStair::parseGoUpStair(const std::string &cmd, const map<std::string, std::string> &params, aris::core::Msg &msg)
+void parseGoUpStair(const std::string &cmd, const map<std::string, std::string> &params, aris::core::Msg &msg)
 {
     GoStairParam param;
     for (auto &i:params)
@@ -57,14 +57,14 @@ void GoStair::parseGoUpStair(const std::string &cmd, const map<std::string, std:
 
 }
 
-//void GoStair::parseGoDownStair(const std::string &cmd, const map<std::string, std::string> &params, aris::core::Msg &msg)
+//void  parseGoDownStair(const std::string &cmd, const map<std::string, std::string> &params, aris::core::Msg &msg)
 //{
 //    GoStairParam param;
 //    param.gaitCount=GaitStairCount;
 //    msg.copyStruct(param);
 //}
 
-int GoStair::GoUpStair(aris::dynamic::Model &model, const aris::dynamic::PlanParamBase &param_in)
+int GoUpStair(aris::dynamic::Model &model, const aris::dynamic::PlanParamBase &param_in)
 {
 
     auto &robot = static_cast<Robots::RobotBase &>(model);
@@ -87,7 +87,7 @@ int GoStair::GoUpStair(aris::dynamic::Model &model, const aris::dynamic::PlanPar
 }
 
 
-//int GoStair::GoDownStair(aris::dynamic::Model &model, const aris::dynamic::PlanParamBase &param_in)
+//int  GoDownStair(aris::dynamic::Model &model, const aris::dynamic::PlanParamBase &param_in)
 //{
 
 //    auto &robot = static_cast<Robots::RobotBase &>(model);
