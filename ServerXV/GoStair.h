@@ -20,16 +20,19 @@
 
 struct GoStairParam final:public aris::server::GaitParamBase
 {
-    //const char fileName[256]{ 0 };
     std::int32_t gaitCount{ 0 };
+    int phase{0};
  };
 
 
-void parseGoUpStair(const std::string &cmd, const map<std::string, std::string> &params, aris::core::Msg &msg);
+void parseGoStair33Init(const std::string &cmd, const std::map<std::string, std::string> &params, aris::core::Msg &msg);
+void parseGoUpStair(const std::string &cmd, const std::map<std::string, std::string> &params, aris::core::Msg &msg);
 //void parseGoDownStair(const std::string &cmd, const map<std::string, std::string> &params, aris::core::Msg &msg);
 
 int GoUpStair(aris::dynamic::Model &model, const aris::dynamic::PlanParamBase &param_in);
 //int GoDownStair(aris::dynamic::Model &model, const aris::dynamic::PlanParamBase &param_in);
+int GoStair33Init(aris::dynamic::Model &model, const aris::dynamic::PlanParamBase &param_in);
+
 
 
 #endif // GOSTAIR_H
