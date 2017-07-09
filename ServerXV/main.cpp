@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
 	}
 	else if (std::string(argv[1]) == "EDU2")
 	{
-		xml_address = "../../Server/RobotEDU2.xml";
+        xml_address = "../../ServerXV/RobotEDU2.xml";
 	}
 	else
 	{
@@ -84,6 +84,8 @@ int main(int argc, char *argv[])
 	rs.addCmd("sh", sayHelloParse, sayHelloGait);
 
     rs.addCmd("gus",parseGoUpStair,GoUpStair);
+    rs.addCmd("rc33", recover33Parse, recover33Gait);
+
 	rs.open();
 
 	rs.setOnExit([&]() 
