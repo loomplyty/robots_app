@@ -118,7 +118,7 @@ int GoStair(aris::dynamic::Model &model, const aris::dynamic::PlanParamBase &par
             static double pin[18];
             for (int i=0;i<6;i++)
             {
-                memcpy(&pin[map[i]*3],&GaitGoUpStair[pSP.count*18+i*3+pSP.phase*GoStairDataEnough],sizeof(double)*3);
+                memcpy(&pin[map[i]*3],&GaitGoUpStair[(pSP.gaitCount-pSP.count-1)*18+i*3+pSP.phase*GoStairDataEnough],sizeof(double)*3);
             }
             robot.SetPin(pin);
         }
