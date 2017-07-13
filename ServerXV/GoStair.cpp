@@ -31,8 +31,8 @@ void parseGoStair(const std::string &cmd, const std::map<std::string, std::strin
         std::ifstream file;
         std::string FileName[Nphase];// = i.second;
 
-        FileName[0]= "../../ServerXV/Gait/upstairTest4.txt";
-        FileName[1]= "../../ServerXV/Gait/upstairTest4.txt";
+        FileName[0]= "../../ServerXV/Gait/upstairTest1.txt";
+        FileName[1]= "../../ServerXV/Gait/upstairTest1.txt";
 
         std::cout<<"file name 1:"<<FileName[0]<<std::endl;
         std::cout<<"file name 2:"<<FileName[1]<<std::endl;
