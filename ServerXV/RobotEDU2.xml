@@ -581,11 +581,12 @@
 			    </direction>
 		    </sh_param>
 	    </sh>
-            <gus default="gus_param">
-              <gus_param type="group">
-                <phase type="int" abbreviation="p" default="1"/>
-              </gus_param>
-            </gus>
+            <gs default="gs_param">
+              <gs_param type="group">
+                <phase type="int" abbreviation="p" default="0"/>
+                <upordown type="int" abbreviation="d" default="0"/>
+              </gs_param>
+            </gs>
 
             <sw default="sw_param">
                 <sw_param type="group">

@@ -83,7 +83,7 @@ int main(int argc, char *argv[])
 	rs.addCmd("tw", twistWaistParse, twistWaistGait);
 	rs.addCmd("sh", sayHelloParse, sayHelloGait);
 
-    rs.addCmd("gus",parseGoUpStair,GoUpStair);
+    rs.addCmd("gs",parseGoStair,GoStair);
     rs.addCmd("rc33", recover33Parse, recover33Gait);
 
 	rs.open();

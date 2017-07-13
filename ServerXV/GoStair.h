@@ -22,12 +22,13 @@ struct GoStairParam final:public aris::server::GaitParamBase
 {
     std::int32_t gaitCount{ 0 };
     int phase{0};
+    int UpOrDown{0};
  };
 
 
-void parseGoUpStair(const std::string &cmd, const std::map<std::string, std::string> &params, aris::core::Msg &msg);
+void parseGoStair(const std::string &cmd, const std::map<std::string, std::string> &params, aris::core::Msg &msg);
 
-int GoUpStair(aris::dynamic::Model &model, const aris::dynamic::PlanParamBase &param_in);
+int GoStair(aris::dynamic::Model &model, const aris::dynamic::PlanParamBase &param_in);
 
 struct Recover33Param final :public aris::server::GaitParamBase
 {
@@ -36,12 +37,12 @@ struct Recover33Param final :public aris::server::GaitParamBase
     bool active_leg[6]{ true,true,true,true,true,true };
     double margin_offset{0.01};//meter
     double alignPee[18]
-    {  -0.1893,   -0.50,   -0.3278,
-       -0.5790,   -0.50,   -0.1028,
-       -0.2004,   -0.50,    0.5528,
-        0.2004,   -0.50,   -0.5528,
-        0.5790,   -0.50,    0.1028,
-        0.1893,   -0.50,    0.3278 };
+    {  -0.30,   -0.50,   -0.52,
+       -0.60,   -0.50,    0,
+       -0.30,   -0.50,    0.52,
+        0.30,   -0.50,   -0.52,
+        0.60,   -0.50,    0,
+        0.30,   -0.50,    0.52 };
 
     double recoverPee[18]
     {  -0.1893,   -0.58,   -0.3278,

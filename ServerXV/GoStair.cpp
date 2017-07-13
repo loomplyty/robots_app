@@ -11,15 +11,16 @@
 #endif
 
 
-#define GoUpStairLengthEnough 80000
+#define GoStairDataEnough 1800000
+#define Nphase 2
 
-static double GaitGoUpStair[18*GoUpStairLengthEnough*6]; //8 steps+ 2 steps+ 8 steps
+static double GaitGoUpStair[18*GoStairDataEnough*Nphase]; //2 types of upstairs
 
-static int GaitStairCount[6];
+static int GaitStairCount[Nphase];
 
 static bool isFileLoaded{false};
 
-void parseGoUpStair(const std::string &cmd, const std::map<std::string, std::string> &params, aris::core::Msg &msg)
+void parseGoStair(const std::string &cmd, const std::map<std::string, std::string> &params, aris::core::Msg &msg)
 {
     GoStairParam param;
 
@@ -28,18 +29,15 @@ void parseGoUpStair(const std::string &cmd, const std::map<std::string, std::str
         //load the txt file
 
         std::ifstream file;
-        std::string FileName[6];// = i.second;
+        std::string FileName[Nphase];// = i.second;
 
-        FileName[0]=        "../../ServerXV/Gait/upstairTest1.txt";
-        FileName[1]="/home/hex/Desktop/RobotIII/resource/gaits/upstair_new90000.txt";
-        FileName[2]="/home/hex/Desktop/RobotIII/resource/gaits/upstair_new90000.txt";
-        FileName[3]="/home/hex/Desktop/RobotIII/resource/gaits/upstair_new90000.txt";
-        FileName[4]="/home/hex/Desktop/RobotIII/resource/gaits/upstair_new90000.txt";
-        FileName[5]="/home/hex/Desktop/RobotIII/resource/gaits/upstair_new90000.txt";
+        FileName[0]= "../../ServerXV/Gait/upstairTest4.txt";
+        FileName[1]= "../../ServerXV/Gait/upstairTest4.txt";
 
-        std::cout<<"file name:"<<FileName[0]<<std::endl;
+        std::cout<<"file name 1:"<<FileName[0]<<std::endl;
+        std::cout<<"file name 2:"<<FileName[1]<<std::endl;
 
-        for(int i=0;i<1;i++)
+        for(int i=0;i<Nphase;i++)
         {
             int gaitData{-1};
             file.open(FileName[i]);
@@ -51,14 +49,14 @@ void parseGoUpStair(const std::string &cmd, const std::map<std::string, std::str
             file.close();
 
             file.open(FileName[i]);
-            for (int j = 0; !file.eof(); j++) file >> GaitGoUpStair[j+i*GoUpStairLengthEnough];
-            std::cout<<"GaitGoUpStair: "<<GaitGoUpStair[0*GoUpStairLengthEnough]<<" "<<GaitGoUpStair[1+i*GoUpStairLengthEnough]<<" "<<GaitGoUpStair[2+i*GoUpStairLengthEnough]<<std::endl;
-            std::cout<<"GaitGoUpStair: "<<GaitGoUpStair[3+i*GoUpStairLengthEnough]<<" "<<GaitGoUpStair[4+i*GoUpStairLengthEnough]<<" "<<GaitGoUpStair[5+i*GoUpStairLengthEnough]<<std::endl;
-            std::cout<<"GaitGoUpStair: "<<GaitGoUpStair[6+i*GoUpStairLengthEnough]<<" "<<GaitGoUpStair[7+i*GoUpStairLengthEnough]<<" "<<GaitGoUpStair[8+i*GoUpStairLengthEnough]<<std::endl;
-            std::cout<<"GaitGoUpStair: "<<GaitGoUpStair[9+i*GoUpStairLengthEnough]<<" "<<GaitGoUpStair[10+i*GoUpStairLengthEnough]<<" "<<GaitGoUpStair[11+i*GoUpStairLengthEnough]<<std::endl;
-            std::cout<<"GaitGoUpStair: "<<GaitGoUpStair[12+i*GoUpStairLengthEnough]<<" "<<GaitGoUpStair[13+i*GoUpStairLengthEnough]<<" "<<GaitGoUpStair[14+i*GoUpStairLengthEnough]<<std::endl;
-            std::cout<<"GaitGoUpStair: "<<GaitGoUpStair[15+i*GoUpStairLengthEnough]<<" "<<GaitGoUpStair[16+i*GoUpStairLengthEnough]<<" "<<GaitGoUpStair[17+i*GoUpStairLengthEnough]<<std::endl;
-            std::cout<<"GaitGoUpStair: "<<GaitGoUpStair[18+i*GoUpStairLengthEnough]<<" "<<GaitGoUpStair[19+i*GoUpStairLengthEnough]<<" "<<GaitGoUpStair[20+i*GoUpStairLengthEnough]<<std::endl;
+            for (int j = 0; !file.eof(); j++) file >> GaitGoUpStair[j+i*GoStairDataEnough];
+            std::cout<<"GaitGoUpStair: "<<GaitGoUpStair[0*GoStairDataEnough]<<" "<<GaitGoUpStair[1+i*GoStairDataEnough]<<" "<<GaitGoUpStair[2+i*GoStairDataEnough]<<std::endl;
+            std::cout<<"GaitGoUpStair: "<<GaitGoUpStair[3+i*GoStairDataEnough]<<" "<<GaitGoUpStair[4+i*GoStairDataEnough]<<" "<<GaitGoUpStair[5+i*GoStairDataEnough]<<std::endl;
+            std::cout<<"GaitGoUpStair: "<<GaitGoUpStair[6+i*GoStairDataEnough]<<" "<<GaitGoUpStair[7+i*GoStairDataEnough]<<" "<<GaitGoUpStair[8+i*GoStairDataEnough]<<std::endl;
+            std::cout<<"GaitGoUpStair: "<<GaitGoUpStair[9+i*GoStairDataEnough]<<" "<<GaitGoUpStair[10+i*GoStairDataEnough]<<" "<<GaitGoUpStair[11+i*GoStairDataEnough]<<std::endl;
+            std::cout<<"GaitGoUpStair: "<<GaitGoUpStair[12+i*GoStairDataEnough]<<" "<<GaitGoUpStair[13+i*GoStairDataEnough]<<" "<<GaitGoUpStair[14+i*GoStairDataEnough]<<std::endl;
+            std::cout<<"GaitGoUpStair: "<<GaitGoUpStair[15+i*GoStairDataEnough]<<" "<<GaitGoUpStair[16+i*GoStairDataEnough]<<" "<<GaitGoUpStair[17+i*GoStairDataEnough]<<std::endl;
+            std::cout<<"GaitGoUpStair: "<<GaitGoUpStair[18+i*GoStairDataEnough]<<" "<<GaitGoUpStair[19+i*GoStairDataEnough]<<" "<<GaitGoUpStair[20+i*GoStairDataEnough]<<std::endl;
 
             file.close();
             std::cout<<"GaitCountPhase"<<i<<" count:"<<GaitStairCount[i]<<std::endl;
@@ -75,6 +73,10 @@ void parseGoUpStair(const std::string &cmd, const std::map<std::string, std::str
             param.phase=std::stoi(i.second);
             param.gaitCount=GaitStairCount[param.phase];
         }
+        else if(i.first=="upordown")
+        {
+            param.UpOrDown=std::stoi(i.second);
+        }
         else
         {
             throw std::logic_error("internal error happened, because invalid params in parseFastWalk");
@@ -85,7 +87,7 @@ void parseGoUpStair(const std::string &cmd, const std::map<std::string, std::str
 }
 
 
-int GoUpStair(aris::dynamic::Model &model, const aris::dynamic::PlanParamBase &param_in)
+int GoStair(aris::dynamic::Model &model, const aris::dynamic::PlanParamBase &param_in)
 {
     auto &robot = static_cast<Robots::RobotBase &>(model);
     auto &pSP=static_cast<const GoStairParam &>(param_in);
@@ -93,11 +95,33 @@ int GoUpStair(aris::dynamic::Model &model, const aris::dynamic::PlanParamBase &p
     if(pSP.count==0)
     {
         std::cout<<"GoStair phase " <<pSP.phase<<" begins..."<<" gait length is: "<<pSP.gaitCount<<std::endl;
+
     }
 
     if(pSP.count < pSP.gaitCount)
     {
-        robot.SetPin(&GaitGoUpStair[pSP.count*18+pSP.phase*GoUpStairLengthEnough]);
+        if(pSP.UpOrDown==0)
+        {
+//            std::cout<<"GaitGoUpStair: "<<GaitGoUpStair[pSP.count*18+pSP.phase*GoStairDataEnough]<<" "<<GaitGoUpStair[1+pSP.count*18+pSP.phase*GoStairDataEnough]<<" "<<GaitGoUpStair[2+pSP.count*18+pSP.phase*GoStairDataEnough]<<std::endl;
+//            std::cout<<"GaitGoUpStair: "<<GaitGoUpStair[3+pSP.count*18+pSP.phase*GoStairDataEnough]<<" "<<GaitGoUpStair[4+pSP.count*18+pSP.phase*GoStairDataEnough]<<" "<<GaitGoUpStair[5+pSP.count*18+pSP.phase*GoStairDataEnough]<<std::endl;
+//            std::cout<<"GaitGoUpStair: "<<GaitGoUpStair[6+pSP.count*18+pSP.phase*GoStairDataEnough]<<" "<<GaitGoUpStair[7+pSP.count*18+pSP.phase*GoStairDataEnough]<<" "<<GaitGoUpStair[8+pSP.count*18+pSP.phase*GoStairDataEnough]<<std::endl;
+//            std::cout<<"GaitGoUpStair: "<<GaitGoUpStair[9+pSP.count*18+pSP.phase*GoStairDataEnough]<<" "<<GaitGoUpStair[10+pSP.count*18+pSP.phase*GoStairDataEnough]<<" "<<GaitGoUpStair[11+pSP.count*18+pSP.phase*GoStairDataEnough]<<std::endl;
+//            std::cout<<"GaitGoUpStair: "<<GaitGoUpStair[12+pSP.count*18+pSP.phase*GoStairDataEnough]<<" "<<GaitGoUpStair[13+pSP.count*18+pSP.phase*GoStairDataEnough]<<" "<<GaitGoUpStair[14+pSP.count*18+pSP.phase*GoStairDataEnough]<<std::endl;
+//            std::cout<<"GaitGoUpStair: "<<GaitGoUpStair[15+pSP.count*18+pSP.phase*GoStairDataEnough]<<" "<<GaitGoUpStair[16+pSP.count*18+pSP.phase*GoStairDataEnough]<<" "<<GaitGoUpStair[17+pSP.count*18+pSP.phase*GoStairDataEnough]<<std::endl;
+            robot.SetPin(&GaitGoUpStair[pSP.count*18+pSP.phase*GoStairDataEnough]);
+
+
+        }
+        else if(pSP.UpOrDown ==1)
+        {
+            static int map[6]{5,4,3,2,1,0};
+            static double pin[18];
+            for (int i=0;i<6;i++)
+            {
+                memcpy(&pin[map[i]*3],&GaitGoUpStair[pSP.count*18+i*3+pSP.phase*GoStairDataEnough],sizeof(double)*3);
+            }
+            robot.SetPin(pin);
+        }
     }
 
     return pSP.gaitCount-pSP.count-1;
