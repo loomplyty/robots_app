@@ -539,6 +539,22 @@
                     <require_zero abbreviation="z" type="double" default="0"/>
                 </rc_param>
             </rc33>
+
+            <rcsmall default="rc_param">
+                <rc_param type="group">
+                    <leg_param type="unique" default="all">
+                        <all abbreviation="a"/>
+                        <first abbreviation="f"/>
+                        <second abbreviation="s"/>
+                        <leg abbreviation="l" type="intArray" default="0"/>
+                    </leg_param>
+                    <t1 abbreviation="t" type="intArray" default="1800"/>
+                    <t2 abbreviation="r" type="intArray" default="1800"/>
+                    <margin_offset abbreviation="m" type="double" default="0.01"/>
+                    <require_zero abbreviation="z" type="double" default="0"/>
+                </rc_param>
+            </rcsmall>
+
             <zrc default="all">
                 <all abbreviation="a"/>
                 <first abbreviation="f"/>

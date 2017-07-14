@@ -305,6 +305,182 @@ int recover33Gait(aris::dynamic::Model &model, const aris::dynamic::PlanParamBas
 }
 
 
+void recoverSmallParse(const std::string &cmd, const std::map<std::string, std::string> &params, aris::core::Msg &msg_out)
+{
+    RecoverSmallParam param;
+
+    param.if_check_pos_min = false;
+    param.if_check_pos_max = false;
+    param.if_check_pos_continuous = false;
+
+    for (auto &i : params)
+    {
+        if (i.first == "all")
+        {
+            std::fill_n(param.active_leg, 6, true);
+        }
+        else if (i.first == "first")
+        {
+            param.active_leg[0] = true;
+            param.active_leg[1] = false;
+            param.active_leg[2] = true;
+            param.active_leg[3] = false;
+            param.active_leg[4] = true;
+            param.active_leg[5] = false;
+            std::fill_n(param.active_motor, 18, false);
+            std::fill_n(param.active_motor + 0, 3, true);
+            std::fill_n(param.active_motor + 6, 3, true);
+            std::fill_n(param.active_motor + 12, 3, true);
+        }
+        else if (i.first == "second")
+        {
+            param.active_leg[0] = false;
+            param.active_leg[1] = true;
+            param.active_leg[2] = false;
+            param.active_leg[3] = true;
+            param.active_leg[4] = false;
+            param.active_leg[5] = true;
+            std::fill_n(param.active_motor, 18, false);
+            std::fill_n(param.active_motor + 3, 3, true);
+            std::fill_n(param.active_motor + 9, 3, true);
+            std::fill_n(param.active_motor + 15, 3, true);
+        }
+        else if(i.first == "leg")
+        {
+            auto leg_id = std::stoi(i.second);
+
+            if (leg_id<0 || leg_id>5)\
+                throw std::runtime_error("invalide param in parseRecover func");
+
+            std::fill_n(param.active_leg, 6, false);
+            param.active_leg[leg_id] = true;
+            std::fill_n(param.active_motor, 18, false);
+            std::fill_n(param.active_motor + leg_id * 3, 3, true);
+        }
+        else if (i.first == "t1")
+        {
+            param.recover_count = std::stoi(i.second);
+        }
+        else if (i.first == "t2")
+        {
+            param.align_count = std::stoi(i.second);
+        }
+        else if (i.first == "margin_offset")
+        {
+            param.margin_offset = std::stod(i.second);
+        }
+        else if (i.first == "require_zero")
+        {
+            printf("Zeroing function is a TODO in this robot\n");
+        }
+        else
+        {
+            printf("Param: %s\n", i.first.c_str());
+            throw std::runtime_error("unknown param in parseRecover func");
+        }
+    }
+
+    msg_out.copyStruct(param);
+}
+
+int recoverSmallGait(aris::dynamic::Model &model, const aris::dynamic::PlanParamBase & plan_param)
+{
+    auto &robot = static_cast<Robots::RobotBase &>(model);
+    auto &param = static_cast<const Recover33Param &>(plan_param);
+
+    static aris::server::ControlServer &cs = aris::server::ControlServer::instance();
+
+    static double beginPin[18], beginPee[18], alignPin[18];
+
+    if (param.count == 0)
+    {
+        std::copy_n(param.motion_feedback_pos->data(), 18, beginPin);
+        robot.GetPee(beginPee, robot.body());
+
+        const double pe[6]{ 0 };
+        robot.SetPeb(pe);
+        robot.SetPee(param.alignPee);
+
+        robot.GetPin(alignPin);
+        robot.SetPee(beginPee, robot.body());
+    }
+
+    int leftCount = param.count < param.recover_count ? 0 : param.recover_count;
+    int rightCount = param.count < param.recover_count ? param.recover_count : param.recover_count + param.align_count;
+
+    double s = -(PI / 2)*cos(PI * (param.count - leftCount + 1) / (rightCount - leftCount)) + PI / 2;
+
+    for (int i = 0; i < 6; ++i)
+    {
+        if (param.active_leg[i])
+        {
+            if (param.count < param.recover_count)
+            {
+                for (int j = 0; j < 3; ++j)
+                {
+                    robot.motionPool().at(i * 3 + j).setMotPos(beginPin[i * 3 + j] * (cos(s) + 1) / 2 + alignPin[i * 3 + j] * (1 - cos(s)) / 2);
+                }
+            }
+            else
+            {
+                double pEE[3];
+                for (int j = 0; j < 3; ++j)
+                {
+                    pEE[j] = param.alignPee[i * 3 + j] * (cos(s) + 1) / 2 + param.recoverPee[i * 3 + j] * (1 - cos(s)) / 2;
+                }
+
+                robot.pLegs[i]->SetPee(pEE);
+            }
+        }
+    }
+
+    // recover 自己做检查 //
+    for (int i = 0; i<18; ++i)
+    {
+        if (param.active_motor[i] && (param.last_motion_raw_data->at(i).cmd == aris::control::EthercatMotion::RUN))
+        {
+            std::int32_t offsetCount = param.margin_offset * cs.controller().motionAtAbs(i).pos2countRatio();
+            std::int32_t maxPosCount = cs.controller().motionAtAbs(i).maxPosCount();
+            std::int32_t minPosCount = cs.controller().motionAtAbs(i).minPosCount();
+
+            if (param.if_check_pos_max &&
+                param.motion_raw_data->at(i).target_pos >(maxPosCount + offsetCount))
+            {
+                rt_printf("Motor %i's target position is bigger than its MAX permitted\
+                           value in recover, you might forget to GO HOME\n", i);
+                rt_printf("The min, max and current count are:\n");
+                for (std::size_t i = 0; i < cs.controller().motionNum(); ++i)
+                {
+                    rt_printf("%d   %d   %d\n",
+                            cs.controller().motionAtAbs(i).minPosCount(),
+                            cs.controller().motionAtAbs(i).maxPosCount(),
+                            param.motion_raw_data->at(i).target_pos);
+                }
+                rt_printf("recover failed\n");
+                return 0;
+            }
+            if (param.if_check_pos_min &&
+                param.motion_raw_data->at(i).target_pos < (minPosCount - offsetCount))
+            {
+                rt_printf("Motor %i's target position is smaller than its MIN permitted\
+                           value in recover, you might forget to GO HOME\n", i);
+                rt_printf("The min, max and current count are:\n");
+                for (std::size_t i = 0; i < cs.controller().motionNum(); ++i)
+                {
+                    rt_printf("%d   %d   %d\n",
+                            cs.controller().motionAtAbs(i).minPosCount(),
+                            cs.controller().motionAtAbs(i).maxPosCount(),
+                            param.motion_raw_data->at(i).target_pos);
+                }
+                rt_printf("recover failed\n");
+                return 0;
+            }
+        }
+    }
+
+    return param.align_count + param.recover_count - param.count - 1;
+}
+
 //void  parseGoDownStair(const std::string &cmd, const map<std::string, std::string> &params, aris::core::Msg &msg)
 //{
 //    GoStairParam param;

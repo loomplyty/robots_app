@@ -85,6 +85,7 @@ int main(int argc, char *argv[])
 
     rs.addCmd("gs",parseGoStair,GoStair);
     rs.addCmd("rc33", recover33Parse, recover33Gait);
+    rs.addCmd("rcsmall", recoverSmallParse, recoverSmallGait);
 
 	rs.open();
 
