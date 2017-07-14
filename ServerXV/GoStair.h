@@ -37,12 +37,12 @@ struct Recover33Param final :public aris::server::GaitParamBase
     bool active_leg[6]{ true,true,true,true,true,true };
     double margin_offset{0.01};//meter
     double alignPee[18]
-    {  -0.20,   -0.55,   -0.3464,
-       -0.40,   -0.55,    0,
-       -0.20,   -0.55,    0.3464,
-        0.20,   -0.55,   -0.3464,
-        0.40,   -0.55,    0,
-        0.20,   -0.55,    0.3464 };
+    {  -0.20,   -0.56,   -0.3464,
+       -0.60,   -0.5,    0,
+       -0.30,   -0.5,    0.52,
+        0.30,   -0.5,   -0.52,
+        0.60,   -0.5,    0,
+        0.20,   -0.56,    0.3464 };
 
 //    {  -0.30,   -0.50,   -0.52,
 //       -0.60,   -0.50,    0,
@@ -73,12 +73,12 @@ struct RecoverSmallParam final :public aris::server::GaitParamBase
     bool active_leg[6]{ true,true,true,true,true,true };
     double margin_offset{0.01};//meter
     double alignPee[18]
-    {  -0.20,   -0.55,   -0.3464,
-       -0.40,   -0.55,    0,
-       -0.20,   -0.55,    0.3464,
-        0.20,   -0.55,   -0.3464,
-        0.40,   -0.55,    0,
-        0.20,   -0.55,    0.3464 };
+    {  -0.20,   -0.56,   -0.3464,
+       -0.40,   -0.56,    0,
+       -0.20,   -0.56,    0.3464,
+        0.20,   -0.56,   -0.3464,
+        0.40,   -0.56,    0,
+        0.20,   -0.56,    0.3464 };
 
     double recoverPee[18]
     {  -0.20,   -0.58,   -0.3464,
