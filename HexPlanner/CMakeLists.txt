@@ -11,4 +11,4 @@ if(WIN32)
 include_directories("E:/HexCodes/eigen" )
 endif(WIN32)
 ######### build project ###############
-add_executable(main main.cpp Dynamics.cpp DynamicsBase.cpp DynamicsModelBase.cpp  solver.cpp matrix_support.cpp util.cpp ldl.cpp Planner.cpp)
+add_executable(main main.cpp Dynamics.cpp DynamicsBase.cpp DynamicsModelBase.cpp Planner.cpp)

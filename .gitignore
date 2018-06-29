@@ -5,6 +5,8 @@ CMakeFiles
 # Makefile     this should be commented because we have Makefile in sh folder
 cmake_install.cmake
 install_manifest.txt
+# for jetbrain
+*.idea
 
 # for qt creator
 *.files

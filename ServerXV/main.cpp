@@ -19,7 +19,7 @@ using namespace std;
 
 //ty's gait
 #include "GoStair.h"
-
+#include "ForceTest.h"
 #ifdef WIN32
 #define rt_printf printf
 #endif
@@ -68,7 +68,6 @@ int main(int argc, char *argv[])
 	}
 	
 	auto &rs = aris::server::ControlServer::instance();
-	
 
 	rs.createModel<Robots::RobotTypeI>();
     rs.loadXml(xml_address.c_str());
@@ -86,6 +85,7 @@ int main(int argc, char *argv[])
     rs.addCmd("gs",parseGoStair,GoStair);
     rs.addCmd("rc33", recover33Parse, recover33Gait);
     rs.addCmd("rcsmall", recoverSmallParse, recoverSmallGait);
+    rs.addCmd("ft",ForceTestParse,ForceTestGait);
 
 	rs.open();
 

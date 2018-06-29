@@ -14,7 +14,7 @@
 #define GoStairDataEnough 1800000
 #define Nphase 2
 
-static double GaitGoUpStair[18*GoStairDataEnough*Nphase]; //2 types of upstairs
+static double GaitGoUpStair[GoStairDataEnough*Nphase]; //2 types of upstairs
 
 static int GaitStairCount[Nphase];
 
@@ -31,8 +31,8 @@ void parseGoStair(const std::string &cmd, const std::map<std::string, std::strin
         std::ifstream file;
         std::string FileName[Nphase];// = i.second;
 
-        FileName[0]= "../../ServerXV/Gait/upstairTestNew.txt";
-        FileName[1]= "../../ServerXV/Gait/upstairTestNew.txt";
+        FileName[0]= "../../ServerXV/Gait/upstairPhaseSep.txt";
+        FileName[1]= "../../ServerXV/Gait/upstairPhaseSep.txt";
 
         std::cout<<"file name 1:"<<FileName[0]<<std::endl;
         std::cout<<"file name 2:"<<FileName[1]<<std::endl;
@@ -114,7 +114,7 @@ int GoStair(aris::dynamic::Model &model, const aris::dynamic::PlanParamBase &par
         }
         else if(pSP.UpOrDown ==1)
         {
-            static int map[6]{5,4,3,2,1,0};
+            static int map[6]{0,1,2,3,4,5};
             static double pin[18];
             for (int i=0;i<6;i++)
             {

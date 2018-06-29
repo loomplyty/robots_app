@@ -3,7 +3,6 @@
 #include "Dynamics.h"
 #include <time.h>
 #include <fstream>
-#include "solver.h"
 #include "Planner.h"
 using namespace std;
 using namespace Eigen;
@@ -11,7 +10,6 @@ using namespace Dynamics;
 
 int main(int argc, char* argv[])
 {
-    static Solver FootForceSolver;
 
     //Vars vars;
     //Params params;
