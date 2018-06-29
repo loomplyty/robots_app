@@ -1,3 +1,5 @@
+# ignore stair txts
+upstair*.txt
 # for cmake
 CMakeCache.txt
 CMakeFiles

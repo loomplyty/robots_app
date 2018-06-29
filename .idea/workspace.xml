@@ -178,10 +178,10 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="438" />
-    <option name="y" value="200" />
-    <option name="width" value="790" />
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="x" value="223" />
+    <option name="y" value="77" />
+    <option name="width" value="903" />
     <option name="height" value="636" />
   </component>
   <component name="ProjectView">
