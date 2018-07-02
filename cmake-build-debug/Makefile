@@ -236,6 +236,33 @@ ServerXV/ForceTest.cpp.s:
 	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/ServerXV/ForceTest.cpp.s
 .PHONY : ServerXV/ForceTest.cpp.s
 
+ServerXV/Gait.o: ServerXV/Gait.cpp.o
+
+.PHONY : ServerXV/Gait.o
+
+# target to build an object file
+ServerXV/Gait.cpp.o:
+	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/ServerXV/Gait.cpp.o
+.PHONY : ServerXV/Gait.cpp.o
+
+ServerXV/Gait.i: ServerXV/Gait.cpp.i
+
+.PHONY : ServerXV/Gait.i
+
+# target to preprocess a source file
+ServerXV/Gait.cpp.i:
+	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/ServerXV/Gait.cpp.i
+.PHONY : ServerXV/Gait.cpp.i
+
+ServerXV/Gait.s: ServerXV/Gait.cpp.s
+
+.PHONY : ServerXV/Gait.s
+
+# target to generate assembly for a file
+ServerXV/Gait.cpp.s:
+	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/ServerXV/Gait.cpp.s
+.PHONY : ServerXV/Gait.cpp.s
+
 ServerXV/GoStair.o: ServerXV/GoStair.cpp.o
 
 .PHONY : ServerXV/GoStair.o
@@ -262,6 +289,60 @@ ServerXV/GoStair.s: ServerXV/GoStair.cpp.s
 ServerXV/GoStair.cpp.s:
 	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/ServerXV/GoStair.cpp.s
 .PHONY : ServerXV/GoStair.cpp.s
+
+ServerXV/Log.o: ServerXV/Log.cpp.o
+
+.PHONY : ServerXV/Log.o
+
+# target to build an object file
+ServerXV/Log.cpp.o:
+	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/ServerXV/Log.cpp.o
+.PHONY : ServerXV/Log.cpp.o
+
+ServerXV/Log.i: ServerXV/Log.cpp.i
+
+.PHONY : ServerXV/Log.i
+
+# target to preprocess a source file
+ServerXV/Log.cpp.i:
+	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/ServerXV/Log.cpp.i
+.PHONY : ServerXV/Log.cpp.i
+
+ServerXV/Log.s: ServerXV/Log.cpp.s
+
+.PHONY : ServerXV/Log.s
+
+# target to generate assembly for a file
+ServerXV/Log.cpp.s:
+	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/ServerXV/Log.cpp.s
+.PHONY : ServerXV/Log.cpp.s
+
+ServerXV/ee.o: ServerXV/ee.cpp.o
+
+.PHONY : ServerXV/ee.o
+
+# target to build an object file
+ServerXV/ee.cpp.o:
+	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/ServerXV/ee.cpp.o
+.PHONY : ServerXV/ee.cpp.o
+
+ServerXV/ee.i: ServerXV/ee.cpp.i
+
+.PHONY : ServerXV/ee.i
+
+# target to preprocess a source file
+ServerXV/ee.cpp.i:
+	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/ServerXV/ee.cpp.i
+.PHONY : ServerXV/ee.cpp.i
+
+ServerXV/ee.s: ServerXV/ee.cpp.s
+
+.PHONY : ServerXV/ee.s
+
+# target to generate assembly for a file
+ServerXV/ee.cpp.s:
+	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/ServerXV/ee.cpp.s
+.PHONY : ServerXV/ee.cpp.s
 
 ServerXV/main.o: ServerXV/main.cpp.o
 
@@ -418,9 +499,18 @@ help:
 	@echo "... ServerXV/ForceTest.o"
 	@echo "... ServerXV/ForceTest.i"
 	@echo "... ServerXV/ForceTest.s"
+	@echo "... ServerXV/Gait.o"
+	@echo "... ServerXV/Gait.i"
+	@echo "... ServerXV/Gait.s"
 	@echo "... ServerXV/GoStair.o"
 	@echo "... ServerXV/GoStair.i"
 	@echo "... ServerXV/GoStair.s"
+	@echo "... ServerXV/Log.o"
+	@echo "... ServerXV/Log.i"
+	@echo "... ServerXV/Log.s"
+	@echo "... ServerXV/ee.o"
+	@echo "... ServerXV/ee.i"
+	@echo "... ServerXV/ee.s"
 	@echo "... ServerXV/main.o"
 	@echo "... ServerXV/main.i"
 	@echo "... ServerXV/main.s"

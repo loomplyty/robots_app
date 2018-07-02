@@ -103,9 +103,9 @@ include_directories(${ALL_INCL_DIR})
 link_directories(${ALL_LINK_DIR})
 
 ################################### build server ####################################
-set(SOURCE_FILES main.cpp move_body.cpp swing.cpp twist_waist.cpp say_hello.cpp GoStair.cpp ForceTest.cpp)
+set(SOURCE_FILES main.cpp move_body.cpp swing.cpp twist_waist.cpp say_hello.cpp GoStair.cpp ForceTest.cpp Log.cpp)
 PREPEND(FULL_SRC ServerXV ${SOURCE_FILES})
-add_executable(Server ${FULL_SRC})
+add_executable(Server ${FULL_SRC} ServerXV/Gait.cpp ServerXV/Gait.h ServerXV/Log.cpp ServerXV/Log.h)
 target_link_libraries(Server ${ALL_LINK_LIB})
 
 ################################### build client ####################################

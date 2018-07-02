@@ -203,10 +203,25 @@
 		<Unit filename="/home/tianyuan/Desktop/robots_app/ServerXV/ForceTest.h">
 			<Option target="Server"/>
 		</Unit>
+		<Unit filename="/home/tianyuan/Desktop/robots_app/ServerXV/Gait.cpp">
+			<Option target="Server"/>
+		</Unit>
+		<Unit filename="/home/tianyuan/Desktop/robots_app/ServerXV/Gait.h">
+			<Option target="Server"/>
+		</Unit>
 		<Unit filename="/home/tianyuan/Desktop/robots_app/ServerXV/GoStair.cpp">
 			<Option target="Server"/>
 		</Unit>
 		<Unit filename="/home/tianyuan/Desktop/robots_app/ServerXV/GoStair.h">
+			<Option target="Server"/>
+		</Unit>
+		<Unit filename="/home/tianyuan/Desktop/robots_app/ServerXV/Log.cpp">
+			<Option target="Server"/>
+		</Unit>
+		<Unit filename="/home/tianyuan/Desktop/robots_app/ServerXV/Log.h">
+			<Option target="Server"/>
+		</Unit>
+		<Unit filename="/home/tianyuan/Desktop/robots_app/ServerXV/ee.cpp">
 			<Option target="Server"/>
 		</Unit>
 		<Unit filename="/home/tianyuan/Desktop/robots_app/ServerXV/main.cpp">
