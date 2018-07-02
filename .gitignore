@@ -47,7 +47,9 @@ install_manifest.txt
 *.lib
 
 # Executables
-build
+build/*
+.idea/*
+cmake-build-debug/*
 *.exe
 *.out
 *.app
