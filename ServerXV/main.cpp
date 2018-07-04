@@ -20,6 +20,7 @@ using namespace std;
 //ty's gait
 #include "GoStair.h"
 #include "ForceTest.h"
+#include "Log.h"
 #ifdef WIN32
 #define rt_printf printf
 #endif
@@ -66,7 +67,7 @@ int main(int argc, char *argv[])
 	{
 		throw std::runtime_error("invalid robot name, please type in XII");
 	}
-	
+        startLogDataThread();
 	auto &rs = aris::server::ControlServer::instance();
 
 	rs.createModel<Robots::RobotTypeI>();

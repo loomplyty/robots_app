@@ -26,8 +26,9 @@ auto ForceTestGait(aris::dynamic::Model &model, const aris::dynamic::PlanParamBa
     auto &param = static_cast<const aris::server::GaitParamBase &>(param_in);
     static robotData data;
 
-    if(param.count%200 ==0)
-        for(int i=0;i<6;i++)
+    if(param.count%1 ==0)
+        {
+          for(int i=0;i<6;i++)
         {
       //  rt_printf("Fz%f ",param.ruicong_data->
             rt_printf("Fz%f ",param.ruicong_data->at(0).force[i].Fz);
@@ -36,17 +37,18 @@ auto ForceTestGait(aris::dynamic::Model &model, const aris::dynamic::PlanParamBa
             memcpy(&data.force[i*3],&param.ruicong_data->at(0).force[i].Fx,sizeof(double));
             memcpy(&data.force[i*3+1],&param.ruicong_data->at(0).force[i].Fy,sizeof(double));
             memcpy(&data.force[i*3+2],&param.ruicong_data->at(0).force[i].Fz,sizeof(double));
-            logPipe.sendToNrt(data);
         }
-
+       logPipe.sendToNrt(data);
+       rt_printf("\n");
+       }
 //    double euler[3];
 //    param.imu_data->toEulBody2Ground(euler,"213");
 //    rt_printf("euler yaw %f,pitch %f,roll %f\n",euler[0],euler[1],euler[2]);
 
-    rt_printf("\n");
-    rt_printf("\n");
+//    rt_printf("\n");
+//    rt_printf("\n");
 
 
-    return 2000 - param.count - 1;
+    return 1000 - param.count - 1;
 
 }
